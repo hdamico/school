@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_194003) do
   create_table "challenges", force: :cascade do |t|
     t.bigint "course_id"
     t.string "name"
-    t.string "content"
+    t.jsonb "content"
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_194003) do
     t.string "type"
     t.string "name"
     t.string "surname"
-    t.date "birthday"
+    t.date "birthdate"
     t.string "address"
     t.string "email"
     t.integer "phone"

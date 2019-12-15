@@ -3,4 +3,5 @@ class Course < ApplicationRecord
   has_many :students, through: :course_students
   has_one :teacher, class_name: 'Users::Teacher', foreign_key: 'id'
   has_one :challenge
+  validates :name, :time_load, presence: true
 end
