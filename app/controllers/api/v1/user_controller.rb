@@ -1,19 +1,10 @@
 module Api::V1
   class UserController < ApplicationController
-
-    def create
-      User.generate(user_params)
-    end
+    private
 
     def user_params
-      params.require(:user)
-            .require(:type)
-            .require(:name)
-            .require(:surname)
-            .require(:phone)
-            .require(:address)
-            .require(:email)
-            .require(:birthdate)
+      params.require(:user).permit(:user, :type, :name, :surname,
+                                   :phone, :address, :email, :birthdate)
     end
   end
 end
