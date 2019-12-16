@@ -3,15 +3,21 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resource :students do
-        put 'enroll_course', action: :enroll_course
-        put 'start_course', action: :start_course
-        put 'finish_course', action: :finish_course
+        get 'index'
+        put 'enroll_course'
+        put 'start_course'
+        put 'finish_course'
       end
       resource :teacher do
-        put 'enroll_course', action: :enroll_course
+        get 'index'
+        put 'enroll_course'
       end
-      resource :courses
-      resource :challenges
+      resource :courses do
+        get 'index'
+      end
+      resource :challenges do
+        get 'index'
+      end
     end
   end
 end

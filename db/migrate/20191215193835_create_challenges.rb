@@ -4,7 +4,6 @@ class CreateChallenges < ActiveRecord::Migration[5.2]
       t.belongs_to :course
       t.string :name
       t.jsonb :content
-      t.integer :score
 
       t.timestamps
     end

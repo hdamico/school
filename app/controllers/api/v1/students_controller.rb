@@ -1,27 +1,33 @@
 module Api::V1
-  class StudentController < UserController
-    before_action :load_student, only: %i[show update destroy enroll_course]
+  class StudentsController < UsersController
+    before_action :load_student, only: %i[show update destroy enroll_course start_course finish_course]
+
+    def index
+      @students = Users::Student.all
+
+      render json: @students
+    end
 
     def create
       @student = Users::Student.create!(user_params)
 
-      respond_with :api, :v1, @student
+      render json: @student
     end
 
     def show
-      respond_with :api, :v1, @student
+      render json: @student
     end
 
     def update
       @student.update!(user_params)
 
-      respond_with :api, :v1, @student
+      render json: @student
     end
 
     def destroy
       @student.destroy
 
-      respond_with :api, :v1, @student
+      render json: @student
     end
 
     def enroll_course

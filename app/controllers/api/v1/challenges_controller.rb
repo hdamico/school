@@ -1,33 +1,39 @@
 module Api::V1
-  class ChallengeController < ApplicationController
+  class ChallengesController < ApplicationController
     before_action :load_challenge, only: %i[show update destroy]
+
+    def index
+      @challenges = Challenge.all
+
+      render json: @challenges
+    end
 
     def create
       @challenge = Challenge.create!(challenge_params)
 
-      respond_with :api, :v1, @challenge
+      render json: @challenge
     end
 
     def show
-      respond_with :api, :v1, @challenge
+      render json: @challenge
     end
 
     def update
       @challenge.update!(challenge_params)
 
-      respond_with :api, :v1, @challenge
+      render json: @challenge
     end
 
     def destroy
       @challenge.destroy
 
-      respond_with :api, :v1, @challenge
+      render json: @challenge
     end
 
     private
 
     def challenge_params
-      params.require(:challenge).permit(:name, :content, :score)
+      params.permit(:name, :content, :score, :course_id)
     end
 
     def load_challenge

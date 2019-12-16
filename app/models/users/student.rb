@@ -23,7 +23,7 @@ module Users
     private
 
     def load_course_student(course_id)
-      @course_student = CourseStudent.where(course_id: course_id, user_id: id)
+      @course_student = course_students.find_by(course_id: course_id)
     end
   end
 end

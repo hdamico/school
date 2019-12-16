@@ -1,18 +1,11 @@
 class User < ActiveRecord::Base
-  include UserRegexValidator
+  include EmailAddressValidator
   validates :name, :surname, :birthdate, :email, :address, :phone, presence: true
-
-  def self.generate(params)
-    validate_type(params[:type])
-
-    "Users::#{params[:type].camelize}".constantize.new(params).generate
-  end
+  validate :email_validation
 
   private
 
-  TYPES = %w[teacher student].freeze
-
-  def validate_type(type)
-    raise ArgumentError unless TYPES.include?(type.downcase)
+  def email_validation
+    EmailAddressValidator.valid?(email)
   end
 end
