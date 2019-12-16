@@ -25,7 +25,7 @@ module Api::V1
     end
 
     def enroll_course
-      if @student.enroll_course(params[:course_id])
+      if @student.enroll_course(course_id)
         render status: 200
       else
         render status: 404
@@ -33,7 +33,7 @@ module Api::V1
     end
 
     def start_course
-      if @student.start_course(params[:course_id])
+      if @student.start_course(course_id)
         render status: 200
       else
         render status: 400
@@ -41,7 +41,7 @@ module Api::V1
     end
 
     def finish_course
-      if @student.finish_course(params[:course_id])
+      if @student.finish_course(course_id)
         render status: 200
       else
         render status: 400
@@ -49,6 +49,10 @@ module Api::V1
     end
 
     private
+
+    def course_id
+      params.require(:course_id)
+    end
 
     def load_student
       @student = Users::Student.find(params[:id])
