@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 # Use AASM to manage model states
 gem 'aasm'
 # Use Rspec for test
